@@ -22,6 +22,8 @@ fun doLambdas() {
     forLambda(prop7)
     prop8("prop8")
     forLambda(prop8)
+    prop9 { toImplement1("prop9") }
+    prop9 { toImplement2("prop9") }
 }
 
 val prop1 = object : Interface {                            // implements interface
@@ -45,6 +47,11 @@ val prop8: (Any) -> Unit = fun (arg: Any) {                 // converts anonymou
     println("$arg")
 }
 
+val prop9: (Class.() -> Unit) -> Unit =                     // converts anonymous function with receiver to lambda
+    fun(init: Class.() -> Unit) {
+        Class().init()
+    }
+
 fun forLambda(lambda: (Any) -> Unit) {
     lambda("lambda")
 }
@@ -61,4 +68,15 @@ fun interface FunInterface {
 
 fun toImplement(arg: Any) {
     println("$arg")
+}
+
+class Class {
+
+    fun toImplement1(arg: Any) {
+        println("$arg 1")
+    }
+
+    fun toImplement2(arg: Any) {
+        println("$arg 2")
+    }
 }
