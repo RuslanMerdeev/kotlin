@@ -6,20 +6,22 @@ fun doLambdas() {
     println()
     println("Lambdas:")
     prop1.toImplement("prop1")
-    prop2.toImplement("prop2")
+    prop2("prop2")
+    forLambda(prop2)
     prop3("prop3")
     forLambda(prop3)
     prop4("prop4")
     forLambda(prop4)
-    prop5("prop5")
-    forLambda(prop5)
-    prop6("prop6")
-    forLambda(prop6)
     try {
-        prop7("prop7")
+        prop5("prop5")
     } catch (e: Exception) {
         println(e.message)
     }
+    prop6.toImplement("prop6")
+    prop7("prop7")
+    forLambda(prop7)
+    prop8("prop8")
+    forLambda(prop8)
 }
 
 val prop1 = object : Interface {                            // implements interface
@@ -28,17 +30,20 @@ val prop1 = object : Interface {                            // implements interf
     }
 }
 
-val prop2 = FunInterface { println("$it") }                 // implements functional interface (or SAM)
+val prop2 = { arg: Any -> println("$arg") }                 // implements lambda with type (Any) -> Unit
+val prop3: (Any) -> Unit = { arg -> println("$arg") }       // the same
+val prop4: (Any) -> Unit = { println("$it") }               // the same
 
-val prop3: (Any) -> Unit = ::toImplement                    // converts function to lambda
-
-val prop4 = { arg: Any -> println("$arg") }                 // implements lambda with type (Any) -> Unit
-val prop5: (Any) -> Unit = { arg -> println("$arg") }       // the same
-val prop6: (Any) -> Unit = { println("$it") }               // the same
-
-val prop7: (Any) -> Nothing = { throw RuntimeException("$it") }     // implements lambda with type (Any) -> Nothing
+val prop5: (Any) -> Nothing = { throw RuntimeException("$it") }     // implements lambda with type (Any) -> Nothing
 
 
+val prop6 = FunInterface { println("$it") }                 // implements functional interface (or SAM)
+
+val prop7: (Any) -> Unit = ::toImplement                    // converts reference to function to lambda
+
+val prop8: (Any) -> Unit = fun (arg: Any) {                 // converts anonymous function to lambda
+    println("$arg")
+}
 
 fun forLambda(lambda: (Any) -> Unit) {
     lambda("lambda")
