@@ -34,6 +34,7 @@ fun doProperties() {
     println("clazz = $clazz")
     clazz.prop10 = "argNew".also { println("set clazz.prop10 = $it") }
     println("clazz = $clazz")
+    println(PROP12)
 }
 
 class Class(var arg1: Any, private val arg2: Any) {
@@ -78,16 +79,23 @@ class Class(var arg1: Any, private val arg2: Any) {
     }
 
     @Deprecated("Use 'prop9' instead", ReplaceWith("prop9"))
-    var prop10: Any by this::prop9
+    var prop10: Any by this::prop9                                                      // replaces to prop9
+
+    companion object{
+
+        const val PROP11 = "PROP11"                                                     // const value
+    }
 
     init {
         prop2 = "prop2"
     }
 
     override fun toString(): String {
-        return "Class(arg1=$arg1, arg2=$arg2, prop1=$prop1, prop2=$prop2, prop3=$prop3, prop4=$prop4, prop5=$prop5, prop6=$prop6, prop7=$prop7, prop8=$prop8, prop9=$prop9, prop10=$prop10)"
+        return "Class(arg1=$arg1, arg2=$arg2, prop1=$prop1, prop2=$prop2, prop3=$prop3, prop4=$prop4, prop5=$prop5, prop6=$prop6, prop7=$prop7, prop8=$prop8, prop9=$prop9, prop10=$prop9, PROP11=$PROP11)"
     }
 }
+
+const val PROP12 = "PROP12"
 
 class Delegate {
 

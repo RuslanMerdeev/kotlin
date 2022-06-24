@@ -9,8 +9,8 @@ fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 
 //    doClasses()
-    doFunctions()
-//    doProperties()
+//    doFunctions()
+    doProperties()
 //    doLambdas()
 }
 
