@@ -5,6 +5,7 @@ import com.merdeev.kotlin.functions.doFunctions
 import com.merdeev.kotlin.properties.doProperties
 import com.merdeev.kotlin.lambdas.doLambdas
 import com.merdeev.kotlin.operators.doOperators
+import com.merdeev.kotlin.generics.doGenerics
 
 fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
@@ -13,6 +14,7 @@ fun main(args: Array<String>) {
 //    doFunctions()
 //    doProperties()
 //    doLambdas()
-    doOperators()
+//    doOperators()
+    doGenerics()
 }
 
